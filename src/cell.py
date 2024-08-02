@@ -35,3 +35,21 @@ class Cell:
         if self.has_bottom_wall:
             l = Line(p4, p3)
             self._win.draw_line(l, f_color)
+        
+    def draw_move(self, to_cell, undo=False):
+        x1 = (self._x1 + self._x2) / 2
+        y1 = (self._y1 + self._y2) / 2
+        x2 = (to_cell._x1 + to_cell._x2) / 2
+        y2 = (to_cell._y1 + to_cell._y2) / 2
+        
+        start_point = Point(x1, y1)
+        end_point = Point(x2, y2)
+
+        path = Line(start_point, end_point)
+        
+        color = "red"
+
+        if undo:
+            color = "gray"
+
+        self._win.draw_line(path, color)
