@@ -25,21 +25,35 @@ class Cell:
         p3 = Point(self._x2, self._y2)
         p4 = Point(self._x1, self._y2)
 
+        color = "Black"
+
+        l = Line(p1, p4)
+
         if self.has_left_wall:
-            l = Line(p1, p4)
             self._win.draw_line(l, f_color)
+        else:
+            self._win.draw_line(l, color)
         
+        l = Line(p1, p2)
+
         if self.has_top_wall:
-            l = Line(p1, p2)
             self._win.draw_line(l, f_color)
-        
+        else:
+            self._win.draw_line(l, color)
+
+        l = Line(p2, p3)
+
         if self.has_right_wall:
-            l = Line(p2, p3)
             self._win.draw_line(l, f_color)
+        else:
+            self._win.draw_line(l, color)
         
+        l = Line(p4, p3)
+
         if self.has_bottom_wall:
-            l = Line(p4, p3)
             self._win.draw_line(l, f_color)
+        else:
+            self._win.draw_line(l, color)
         
     def draw_move(self, to_cell, undo=False):
         x1 = (self._x1 + self._x2) / 2
