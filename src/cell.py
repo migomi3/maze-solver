@@ -2,7 +2,7 @@ from graphics import Line, Point
 
 
 class Cell:
-    def __init__(self, win, has_left_wall=True, has_right_wall=True, has_top_wall=True, has_bottom_wall=True):
+    def __init__(self, win=None, has_left_wall=True, has_right_wall=True, has_top_wall=True, has_bottom_wall=True):
         self.has_left_wall = has_left_wall
         self.has_right_wall = has_right_wall
         self.has_top_wall = has_top_wall
@@ -19,6 +19,9 @@ class Cell:
         self._x2 = x2
         self._y1 = y1
         self._y2 = y2
+
+        if self._win is None:
+            return
 
         #top-left to bottom-left clockwise
         p1 = Point(self._x1, self._y1)
@@ -57,6 +60,9 @@ class Cell:
             self._win.draw_line(l, color)
         
     def draw_move(self, to_cell, undo=False):
+        if self._win is None:
+            return
+        
         x1 = (self._x1 + self._x2) / 2
         y1 = (self._y1 + self._y2) / 2
         x2 = (to_cell._x1 + to_cell._x2) / 2
